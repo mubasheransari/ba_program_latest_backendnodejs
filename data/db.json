@@ -1,0 +1,454 @@
+{
+  "users": [
+    {
+      "isActive": true,
+      "id": 1,
+      "role": "admin",
+      "name": "System Admin",
+      "email": "admin@baprogram.com",
+      "passwordHash": "$2a$10$Ubswv6q5xu06HhcFoFFhluZLMEh2peOid5ZlTTRqo1G.xcgRJz4/6",
+      "isApproved": true,
+      "createdAt": "2026-01-16T10:19:03.167Z"
+    },
+    {
+      "isActive": true,
+      "id": 2,
+      "role": "supervisor",
+      "name": "mubasher",
+      "email": "mubasher@yopmail.com",
+      "cnicNumber": "32132131231231",
+      "city": "karachi",
+      "passwordHash": "$2a$10$/s98ufg4aaC1MfSiqnnw1ewThk0AhITJXfoPk06lCKd6xs8TX1FPi",
+      "isApproved": true,
+      "createdAt": "2026-01-16T10:39:52.182Z"
+    },
+    {
+      "isActive": true,
+      "id": 3,
+      "name": "John Doe",
+      "email": "john@test.com",
+      "role": "employee",
+      "city": "Karachi",
+      "employeeCnic": "12345-1234567-1",
+      "location": "Gulshan",
+      "isApproved": true,
+      "passwordHash": "$2a$10$Z5l5QADUnrh4iIeoRHGJkOw3./u5DMHQyIQluh1i3esCcM9RvU53K",
+      "createdAt": "2026-02-03T06:26:50.994Z"
+    },
+    {
+      "isActive": true,
+      "id": 4,
+      "name": "testuser",
+      "email": "testuser@yopmail.com",
+      "role": "employee",
+      "city": "Karachi",
+      "employeeCnic": "12345-1234567-1",
+      "location": "Gulshan",
+      "isApproved": true,
+      "passwordHash": "$2a$10$H8I673K9DiH0AisRYYgdIO4MdvvDlphMf/eElEueT7Q5ye8EXYKIa",
+      "createdAt": "2026-03-16T05:54:12.501Z"
+    },
+    {
+      "isActive": true,
+      "id": 5,
+      "name": "testuser1",
+      "email": "testuser1@yopmail.com",
+      "role": "employee",
+      "city": "Karachi",
+      "employeeCnic": "12345-1234567-1",
+      "location": "Gulshan",
+      "isApproved": true,
+      "passwordHash": "$2a$10$uQGNb9NxkAiapWIQEr3njOuURFzDY2QCWrk1LihWwWZQ1eypGM.Hq",
+      "createdAt": "2026-03-16T05:54:48.355Z"
+    },
+    {
+      "isActive": true,
+      "permissions": {
+        "dashboard": true,
+        "users": true,
+        "supervisors": false,
+        "cities": false,
+        "locations": false,
+        "products": true,
+        "sales": false,
+        "journeyPlans": false,
+        "settings": false
+      },
+      "id": 6,
+      "role": "sub_admin",
+      "name": "test sub admin",
+      "email": "testsubadmin@yopmail.com",
+      "city": "karachi",
+      "passwordHash": "$2a$10$BFkmY/2UPwQEAiYJxIvQWOzwlxON9oiS9usVgc.wri.T0xSipdo0u",
+      "passwordPlain": "1234",
+      "isApproved": true,
+      "createdAt": "2026-03-24T09:44:26.942Z"
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "name": "Lahore"
+    },
+    {
+      "id": 2,
+      "name": "karachi"
+    },
+    {
+      "id": 3,
+      "name": "islamabad"
+    }
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "martName": "Imtiaz",
+      "area": "Askari 11",
+      "cityId": 1,
+      "cityName": "Lahore",
+      "lat": 80.75498,
+      "lng": 67.543543,
+      "createdAt": "2026-01-19T06:11:30.742Z"
+    },
+    {
+      "id": 2,
+      "martName": "grace super market",
+      "area": "airport",
+      "cityId": 2,
+      "cityName": "karachi",
+      "lat": 67,
+      "lng": 65,
+      "createdAt": "2026-02-02T11:31:38.185Z"
+    }
+  ],
+  "products": [
+    {
+      "id": "001",
+      "name": "Ultra Rich",
+      "description": "Mezan Ultra Rich Tea",
+      "brandName": "ULTRA RICH",
+      "quantity": 1000,
+      "weight": "0.2 KG",
+      "createdAt": "2026-01-20T06:48:32.624Z",
+      "weightKg": 0.2,
+      "weightUnit": "kg",
+      "updatedAt": "2026-03-24T09:44:41.635Z"
+    },
+    {
+      "id": "002",
+      "name": "Ultra Rich",
+      "description": "des",
+      "brandName": "Ultrr Rich ",
+      "quantity": 1000,
+      "weight": "1000 KG",
+      "createdAt": "2026-03-14T07:39:54.818Z",
+      "weightKg": 1000,
+      "weightUnit": "kg"
+    }
+  ],
+  "journeyPlans": [
+    {
+      "id": 1,
+      "supervisorId": 2,
+      "periodType": "monthly",
+      "startDate": "2026-02-02",
+      "endDate": "2026-03-03",
+      "days": {
+        "2026-02-02": [
+          "1"
+        ],
+        "2026-02-03": [
+          "1"
+        ],
+        "2026-02-04": [
+          "1"
+        ],
+        "2026-02-05": [
+          "1"
+        ],
+        "2026-02-06": [
+          "1"
+        ],
+        "2026-02-07": [
+          "1"
+        ],
+        "2026-02-08": [
+          "1"
+        ],
+        "2026-02-09": [
+          "1"
+        ],
+        "2026-02-10": [
+          "1"
+        ],
+        "2026-02-11": [
+          "1"
+        ],
+        "2026-02-12": [
+          "1"
+        ],
+        "2026-02-13": [
+          "1"
+        ],
+        "2026-02-14": [
+          "1"
+        ],
+        "2026-02-15": [
+          "1"
+        ],
+        "2026-02-16": [
+          "1"
+        ],
+        "2026-02-17": [
+          "1"
+        ],
+        "2026-02-18": [
+          "1"
+        ],
+        "2026-02-19": [
+          "1"
+        ],
+        "2026-02-20": [
+          "1"
+        ],
+        "2026-02-21": [
+          "1"
+        ],
+        "2026-02-22": [
+          "1"
+        ],
+        "2026-02-23": [
+          "1"
+        ],
+        "2026-02-24": [
+          "1"
+        ],
+        "2026-02-25": [
+          "1"
+        ],
+        "2026-02-26": [
+          "1"
+        ],
+        "2026-02-27": [
+          "1"
+        ],
+        "2026-02-28": [
+          "1"
+        ],
+        "2026-03-01": [
+          "1"
+        ],
+        "2026-03-02": [
+          "1"
+        ],
+        "2026-03-03": [
+          "1"
+        ]
+      },
+      "locationsSnapshot": {
+        "1": {
+          "id": "1",
+          "lat": 80.75498,
+          "lng": 67.543543
+        }
+      },
+      "daysCount": 30,
+      "selectedDaysCount": 30,
+      "copiedFrom": null,
+      "createdAt": "2026-01-31T10:41:25.643Z",
+      "updatedAt": "2026-02-02T10:52:35.770Z"
+    }
+  ],
+  "sales": [
+    {
+      "id": 9,
+      "invoiceNo": "SAL-0009",
+      "customerName": "Walk-in Customer",
+      "customerPhone": "",
+      "notes": "",
+      "items": [
+        {
+          "productId": "001",
+          "name": "Ultra Rich",
+          "brandName": "ULTRA RICH",
+          "weight": "0.2 KG",
+          "quantityKg": 4,
+          "addedAt": "2026-03-14T10:39:55.031Z"
+        }
+      ],
+      "itemsCount": 1,
+      "totalQuantityKg": 4,
+      "createdBy": "admin@baprogram.com",
+      "createdAt": "2026-03-14T10:40:01.575Z"
+    },
+    {
+      "id": 8,
+      "invoiceNo": "SAL-0008",
+      "customerName": "Walk-in Customer",
+      "customerPhone": "",
+      "notes": "",
+      "items": [
+        {
+          "productId": "001",
+          "name": "Ultra Rich",
+          "brandName": "ULTRA RICH",
+          "weight": "0.2 KG",
+          "quantityKg": 20,
+          "addedAt": "2026-03-14T10:17:57.784Z"
+        }
+      ],
+      "itemsCount": 1,
+      "totalQuantityKg": 20,
+      "createdBy": "admin@baprogram.com",
+      "createdAt": "2026-03-14T10:18:00.072Z"
+    },
+    {
+      "id": 7,
+      "invoiceNo": "SAL-0007",
+      "customerName": "Walk-in Customer",
+      "customerPhone": "",
+      "notes": "",
+      "items": [
+        {
+          "productId": "001",
+          "name": "Ultra Rich",
+          "brandName": "ULTRA RICH",
+          "weight": "0.2 KG",
+          "quantityKg": 6,
+          "addedAt": "2026-03-14T10:17:17.457Z"
+        }
+      ],
+      "itemsCount": 1,
+      "totalQuantityKg": 6,
+      "createdBy": "admin@baprogram.com",
+      "createdAt": "2026-03-14T10:17:21.000Z"
+    },
+    {
+      "id": 6,
+      "invoiceNo": "SAL-0006",
+      "customerName": "Walk-in Customer",
+      "customerPhone": "",
+      "notes": "",
+      "items": [
+        {
+          "productId": "001",
+          "name": "Ultra Rich",
+          "brandName": "ULTRA RICH",
+          "weight": "0.2 KG",
+          "quantityKg": 2,
+          "addedAt": "2026-03-14T10:05:36.057Z"
+        }
+      ],
+      "itemsCount": 1,
+      "totalQuantityKg": 2,
+      "createdBy": "admin@baprogram.com",
+      "createdAt": "2026-03-14T10:05:38.985Z"
+    },
+    {
+      "id": 5,
+      "invoiceNo": "SAL-0005",
+      "customerName": "Walk-in Customer",
+      "customerPhone": "",
+      "notes": "",
+      "items": [
+        {
+          "productId": "002",
+          "name": "Ultra Rich",
+          "brandName": "Ultrr Rich ",
+          "weight": "1000",
+          "quantityKg": 1,
+          "addedAt": "2026-03-14T09:55:07.797Z"
+        }
+      ],
+      "itemsCount": 1,
+      "totalQuantityKg": 1,
+      "createdBy": "admin@baprogram.com",
+      "createdAt": "2026-03-14T09:55:09.546Z"
+    },
+    {
+      "id": 4,
+      "invoiceNo": "SAL-0004",
+      "customerName": "Walk-in Customer",
+      "customerPhone": "",
+      "notes": "",
+      "items": [
+        {
+          "productId": "001",
+          "name": "Ultra Rich",
+          "brandName": "ULTRA RICH",
+          "weight": "0.2 KG",
+          "quantityKg": 0.4,
+          "addedAt": "2026-03-14T09:46:21.641Z"
+        }
+      ],
+      "itemsCount": 1,
+      "totalQuantityKg": 0.4,
+      "createdBy": "admin@baprogram.com",
+      "createdAt": "2026-03-14T09:46:34.309Z"
+    },
+    {
+      "id": 3,
+      "invoiceNo": "SAL-0003",
+      "customerName": "Walk-in Customer",
+      "customerPhone": "+923312026578",
+      "notes": "test",
+      "items": [
+        {
+          "productId": "001",
+          "name": "Ultra Rich",
+          "brandName": "ULTRA RICH",
+          "weight": "0.2 KG",
+          "quantityKg": 0.2,
+          "addedAt": "2026-03-14T07:43:17.394Z"
+        }
+      ],
+      "itemsCount": 1,
+      "totalQuantityKg": 0.2,
+      "createdBy": "admin@baprogram.com",
+      "createdAt": "2026-03-14T07:43:28.041Z"
+    },
+    {
+      "id": 2,
+      "invoiceNo": "SAL-0002",
+      "customerName": "Walk-in Customer",
+      "customerPhone": "test",
+      "notes": "test",
+      "items": [
+        {
+          "productId": "001",
+          "name": "Ultra Rich",
+          "brandName": "ULTRA RICH",
+          "weight": "0.2 KG",
+          "quantityKg": 200,
+          "addedAt": "2026-03-14T07:41:10.498Z"
+        }
+      ],
+      "itemsCount": 1,
+      "totalQuantityKg": 200,
+      "createdBy": "admin@baprogram.com",
+      "createdAt": "2026-03-14T07:41:12.984Z"
+    },
+    {
+      "id": 1,
+      "invoiceNo": "SAL-0001",
+      "customerName": "Walk-in Customer",
+      "customerPhone": "+923312025765",
+      "notes": "Notes",
+      "items": [
+        {
+          "productId": "001",
+          "name": "Ultra Rich",
+          "brandName": "ULTRA RICH",
+          "weight": "0.2 KG",
+          "quantityKg": 0.2,
+          "addedAt": "2026-03-14T07:35:51.333Z"
+        }
+      ],
+      "itemsCount": 1,
+      "totalQuantityKg": 0.2,
+      "createdBy": "admin@baprogram.com",
+      "createdAt": "2026-03-14T07:35:56.643Z"
+    }
+  ],
+  "salesCart": []
+}
