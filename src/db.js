@@ -44,7 +44,7 @@ function ensureDbFile() {
   if (!fs.existsSync(DB_PATH)) {
     fs.writeFileSync(
       DB_PATH,
-      JSON.stringify({ users: [], cities: [], locations: [], products: [], journeyPlans: [], sales: [], salesCart: [] }, null, 2),
+      JSON.stringify({ users: [], cities: [], locations: [], products: [], journeyPlans: [], sales: [], salesCart: [], signupOtps: [] }, null, 2),
       'utf8'
     );
   }
@@ -58,6 +58,7 @@ function ensureCollections(db) {
   db.journeyPlans = Array.isArray(db.journeyPlans) ? db.journeyPlans : [];
   db.sales = Array.isArray(db.sales) ? db.sales : [];
   db.salesCart = Array.isArray(db.salesCart) ? db.salesCart : [];
+  db.signupOtps = Array.isArray(db.signupOtps) ? db.signupOtps : [];
 
   db.users = db.users.map((user) => ({
     isActive: user.isActive !== false,

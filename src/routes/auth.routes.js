@@ -14,28 +14,71 @@ function signToken(user) {
   );
 }
 
-router.post('/signup', async (req, res) => {
-  const { name, email, city, employeeCnic, location, password, confirmPassword } = req.body || {};
+function makeOtp() {
+  return String(Math.floor(100000 + Math.random() * 900000));
+}
 
-  if (!name || !email || !city || !employeeCnic || !location || !password || !confirmPassword) {
-    return res.status(400).json({ message: 'All fields are required' });
+function cleanupExpiredOtps(db) {
+  const now = Date.now();
+  db.signupOtps = (db.signupOtps || []).filter((x) => Number(x.expiresAt || 0) > now);
+}
+
+router.post('/signup/request-otp', async (req, res) => {
+  const { email } = req.body || {};
+  if (!email) return res.status(400).json({ isSuccess: false, message: 'Email is required' });
+
+  const db = readDb();
+  const normalizedEmail = String(email).trim().toLowerCase();
+  const exists = db.users.find((u) => u.email.toLowerCase() === normalizedEmail);
+  if (exists) return res.status(409).json({ isSuccess: false, message: 'Email already exists' });
+
+  cleanupExpiredOtps(db);
+  db.signupOtps = (db.signupOtps || []).filter((x) => String(x.email || '').toLowerCase() !== normalizedEmail);
+  const code = makeOtp();
+  const expiresAt = Date.now() + 5 * 60 * 1000;
+  db.signupOtps.push({ email: normalizedEmail, code, expiresAt, createdAt: new Date().toISOString() });
+  writeDb(db);
+
+  return res.json({
+    isSuccess: true,
+    message: 'OTP generated successfully',
+    result: {
+      email: normalizedEmail,
+      expiresInSeconds: 300,
+      otp: code,
+      note: 'Development OTP response. Connect an SMS or email provider before production use.',
+    },
+  });
+});
+
+router.post('/signup', async (req, res) => {
+  const { name, email, city, employeeCnic, location, password, confirmPassword, otpCode } = req.body || {};
+
+  if (!name || !email || !city || !employeeCnic || !location || !password || !confirmPassword || !otpCode) {
+    return res.status(400).json({ isSuccess: false, message: 'All fields including otpCode are required' });
   }
   if (password !== confirmPassword) {
-    return res.status(400).json({ message: 'Passwords do not match' });
+    return res.status(400).json({ isSuccess: false, message: 'Passwords do not match' });
   }
 
   const db = readDb();
-  const exists = db.users.find((u) => u.email.toLowerCase() === String(email).toLowerCase());
+  const normalizedEmail = String(email).trim().toLowerCase();
+  const exists = db.users.find((u) => u.email.toLowerCase() === normalizedEmail);
   if (exists) {
-    return res.status(409).json({ message: 'Email already exists' });
+    return res.status(409).json({ isSuccess: false, message: 'Email already exists' });
+  }
+
+  cleanupExpiredOtps(db);
+  const otpEntry = (db.signupOtps || []).find((x) => String(x.email).toLowerCase() === normalizedEmail && String(x.code) === String(otpCode).trim());
+  if (!otpEntry) {
+    return res.status(400).json({ isSuccess: false, message: 'Invalid or expired OTP' });
   }
 
   const passwordHash = await bcrypt.hash(password, 10);
-
   const user = {
     id: nextId(db.users),
     name: String(name).trim(),
-    email: String(email).trim().toLowerCase(),
+    email: normalizedEmail,
     role: 'employee',
     city: String(city).trim(),
     employeeCnic: String(employeeCnic).trim(),
@@ -48,9 +91,10 @@ router.post('/signup', async (req, res) => {
   };
 
   db.users.push(user);
+  db.signupOtps = (db.signupOtps || []).filter((x) => !(String(x.email).toLowerCase() === normalizedEmail && String(x.code) === String(otpCode).trim()));
   writeDb(db);
 
-  return res.status(201).json({ ok: true, message: 'Signup successful. Awaiting admin approval.' });
+  return res.status(201).json({ isSuccess: true, message: 'Signup successful. Awaiting admin approval.', result: user.id });
 });
 
 async function doLogin(req, res, { role, adminPanel } = {}) {
